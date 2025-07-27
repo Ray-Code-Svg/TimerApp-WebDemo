@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimerApp - 二维时间管理演示</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="top-nav">
+        <div class="nav-content">
+            <h1 class="app-title">TimerApp</h1>
+            <div class="nav-controls">
+                <button class="nav-btn" id="todayBtn">今天</button>
+                <input type="date" id="datePicker" class="date-picker">
+                <button class="nav-btn" id="templateBtn">模版</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 时间资源总览 -->
+    <section class="time-overview">
+        <div class="overview-content">
+            <div class="stat-item">
+                <span class="stat-label">已分配时间</span>
+                <span class="stat-value" id="allocatedTime">0小时0分钟</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-label">剩余时间</span>
+                <span class="stat-value" id="remainingTime">24小时0分钟</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <!-- 任务列表侧边栏 -->
+        <aside class="task-sidebar">
+            <div class="sidebar-header">
+                <h3>任务列表</h3>
+                <button class="add-task-btn" id="addTaskBtn">+</button>
+            </div>
+            <div class="task-list" id="taskList">
+                <!-- 任务项将通过JavaScript动态添加 -->
+            </div>
+            
+            <!-- 回收站 -->
+            <div class="trash-zone" id="trashZone">
+                <div class="trash-icon">🗑️</div>
+                <span>拖拽到此删除</span>
+            </div>
+        </aside>
+
+        <!-- 二维时间坐标系 -->
+        <section class="timeline-container">
+            <!-- X轴时间标尺 -->
+            <div class="time-ruler">
+                <div class="ruler-track" id="timeRuler">
+                    <!-- 时间刻度将通过JavaScript生成 -->
+                </div>
+                <div class="zoom-controls">
+                    <button class="zoom-btn" id="zoomOut">-</button>
+                    <span class="zoom-level" id="zoomLevel">100%</span>
+                    <button class="zoom-btn" id="zoomIn">+</button>
+                </div>
+            </div>
+
+            <!-- 时间轴主体 -->
+            <div class="timeline-main" id="timelineMain">
+                <!-- 时间流水线将通过JavaScript动态生成 -->
+            </div>
+        </section>
+    </main>
+
+    <!-- 任务编辑模态框 -->
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">添加任务</h3>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="taskName">任务名称</label>
+                    <input type="text" id="taskName" placeholder="输入任务名称">
+                </div>
+                <div class="form-group">
+                    <label for="taskColor">任务颜色</label>
+                    <div class="color-picker" id="colorPicker">
+                        <div class="color-option" data-color="#007AFF" style="background: #007AFF;"></div>
+                        <div class="color-option" data-color="#34C759" style="background: #34C759;"></div>
+                        <div class="color-option" data-color="#FF9500" style="background: #FF9500;"></div>
+                        <div class="color-option" data-color="#FF3B30" style="background: #FF3B30;"></div>
+                        <div class="color-option" data-color="#AF52DE" style="background: #AF52DE;"></div>
+                        <div class="color-option" data-color="#FF2D92" style="background: #FF2D92;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelBtn">取消</button>
+                <button class="btn-primary" id="saveBtn">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 使用说明 -->
+    <div class="help-panel" id="helpPanel">
+        <div class="help-content">
+            <h3>🎯 TimerApp 使用说明</h3>
+            <ul>
+                <li><strong>添加任务：</strong>点击左侧"+"按钮添加新任务</li>
+                <li><strong>创建时间块：</strong>在时间轴上点击并拖拽创建时间安排</li>
+                <li><strong>调整时间：</strong>拖拽时间块的边缘调整开始和结束时间</li>
+                <li><strong>移动时间块：</strong>拖拽时间块中心移动到其他时间</li>
+                <li><strong>删除操作：</strong>将任务或时间块拖拽到回收站删除</li>
+                <li><strong>缩放视图：</strong>使用右上角的+/-按钮缩放时间轴</li>
+            </ul>
+            <button class="btn-primary" onclick="closeHelp()">开始使用</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
